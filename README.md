@@ -1,14 +1,16 @@
 # Metrics-CDI
 
-Binds [Metrics](http://metrics.codahale.com) to CDI and current Servlet APIs. In a Java EE 6 war, all you need to add is this dependency and add a `beans.xml`:
+Binds [Metrics](http://metrics.codahale.com) to CDI (and the Servlet APIs using annotations). I.e. in a Java EE 6 `war`, all you need to add is this dependency (and add a `beans.xml`, if you don't have one, yet):
 
 	<dependency>
 		<groupId>com.github.t1</groupId>
 		<artifactId>metrics-cdi</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.0</version>
 	</dependency>
 
-This activates:
+It's not on maven central, so you'll have to grab it from [bintray](https://bintray.com/t1/javaee-helpers/metrics-cdi/view).
+
+## Features
 
 * Provides the [metrics servlet](http://metrics.codahale.com/manual/servlets) at `http://<host-name>:<port>/<app-name>/-metrics`.
 * Automatically instruments your [web servlets](http://metrics.codahale.com/manual/servlet) (including JAX-RS).
