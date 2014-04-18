@@ -3,7 +3,7 @@
 
     <groupId>com.github.t1</groupId>
     <artifactId>metrics-cdi</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <properties>
         <metrics.version>3.0.2</metrics.version>
@@ -11,7 +11,7 @@
 
     <scm>
         <developerConnection>scm:git:https://github.com/t1/metrics-cdi</developerConnection>
-        <tag>metrics-cdi-1.0.0</tag>
+        <tag>HEAD</tag>
     </scm>
     <distributionManagement>
         <repository>
