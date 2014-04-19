@@ -19,6 +19,14 @@ It's not on maven central, so you'll have to grab it from [bintray](https://bint
 * Provides [counter](http://metrics.codahale.com/manual/core/#counters) instances; just `@Inject` a `com.codahale.metrics.Counter` and call e.g. `counter.inc()`.
 * Provides [timer](http://metrics.codahale.com/manual/core/#timers) instances; just `@Inject` a `com.codahale.metrics.Timer` and `try (Context time = timer.time()) { ... }`.
 
+## Tested Platforms
+
+It just uses Servlet 3.0 and CDI 1.0, so it should run on any Java EE 6 container, but the world is not perfect. I've tried a few things:
+
+* JBoss 8.0.0 (Wildfly): Runs perfectly
+* JBoss 7.1.1: Need to [overlay](http://maven.apache.org/plugins/maven-war-plugin/overlays.html) the `metrics-cdi` dependency.
+* Glassfish 4.0: Some simple tests worked out nicely.
+
 ## Things left to do
 
 * [JMX Gauges](http://metrics.codahale.com/manual/core/#jmx-gauges)
