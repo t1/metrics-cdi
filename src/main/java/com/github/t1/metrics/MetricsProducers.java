@@ -1,7 +1,6 @@
 package com.github.t1.metrics;
 
-import static com.codahale.metrics.MetricRegistry.*;
-import static com.github.t1.log.LogLevel.*;
+import java.lang.reflect.Member;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.*;
@@ -15,6 +14,7 @@ import com.codahale.metrics.health.*;
 import com.github.t1.log.Logged;
 
 @Slf4j
+@Logged
 @Singleton
 public class MetricsProducers {
     private final MetricRegistry metrics = new MetricRegistry();
@@ -27,7 +27,7 @@ public class MetricsProducers {
     private Instance<Gauge<?>> gauges;
 
     @PostConstruct
-    public void startMetricsJmsReporter() {
+    public void init() {
         log.debug("start jms reporter");
         JmxReporter.forRegistry(metrics).build().start();
 
@@ -44,42 +44,35 @@ public class MetricsProducers {
         }
     }
 
-    @Logged
     @Produces
     public MetricRegistry produceMetricRegistry() {
         return metrics;
     }
 
-    @Logged
     @Produces
     public HealthCheckRegistry produceHealthCheckRegistry() {
         return healthCheckRegistry;
     }
 
     @Produces
-    @Logged(level = OFF)
     public Counter produceCounter(InjectionPoint injectionPoint) {
-        Class<?> beanClass = injectionPoint.getBean().getBeanClass();
-        String counterName = injectionPoint.getMember().getName();
-        log.debug("create counter {} in {}", counterName, beanClass);
-        return metrics.counter(name(beanClass, counterName));
+        return metrics.counter(name(injectionPoint));
     }
 
     @Produces
-    @Logged(level = OFF)
     public Timer produceTimer(InjectionPoint injectionPoint) {
-        Class<?> beanClass = injectionPoint.getBean().getBeanClass();
-        String timerName = injectionPoint.getMember().getName();
-        log.debug("create timer {} in {}", timerName, beanClass);
-        return metrics.timer(name(beanClass, timerName));
+        return metrics.timer(name(injectionPoint));
     }
 
     @Produces
-    @Logged(level = OFF)
     public Meter produceMeter(InjectionPoint injectionPoint) {
-        Class<?> beanClass = injectionPoint.getBean().getBeanClass();
-        String meterName = injectionPoint.getMember().getName();
-        log.debug("create meter {} in {}", meterName, beanClass);
-        return metrics.meter(name(beanClass, meterName));
+        return metrics.meter(name(injectionPoint));
+    }
+
+    private String name(InjectionPoint injectionPoint) {
+        Member member = injectionPoint.getMember();
+        Class<?> beanClass = member.getDeclaringClass();
+        String counterName = member.getName();
+        return MetricRegistry.name(beanClass, counterName);
     }
 }

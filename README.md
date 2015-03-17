@@ -10,6 +10,8 @@ Binds [Metrics](http://metrics.codahale.com) to CDI (and the Servlet APIs using 
 
 It's not on maven central, so you'll have to grab it from [bintray](https://bintray.com/t1/javaee-helpers/metrics-cdi/view).
 
+Note to self: There's an alternative: https://github.com/astefanutti/metrics-cdi
+
 ## Features
 
 * Provides the [metrics servlets](https://dropwizard.github.io/metrics/3.1.0/manual/servlets) at `http://<host-name>:<port>/<app-name>/-metrics`.
