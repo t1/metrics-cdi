@@ -1,11 +1,11 @@
-# Metrics-CDI
+# Metrics-CDI [ ![Download](https://api.bintray.com/packages/t1/javaee-helpers/metrics-cdi/images/download.svg) ](https://bintray.com/t1/javaee-helpers/metrics-cdi/_latestVersion)
 
 Binds [Metrics](http://metrics.codahale.com) to CDI (and the Servlet APIs using annotations). I.e. in a Java EE 6 `war`, all you need to add is this dependency (and add a `beans.xml`, if you don't have one, yet):
 
 	<dependency>
 		<groupId>com.github.t1</groupId>
 		<artifactId>metrics-cdi</artifactId>
-		<version>1.0.0</version>
+		<version>${version}</version>
 	</dependency>
 
 It's not on maven central, so you'll have to grab it from [bintray](https://bintray.com/t1/javaee-helpers/metrics-cdi/view).
