@@ -2,11 +2,11 @@
 
 Binds [Metrics](http://metrics.codahale.com) to CDI (and the Servlet APIs using annotations). I.e. in a Java EE 6 `war`, all you need to add is this dependency (and add a `beans.xml`, if you don't have one, yet):
 
-	<dependency>
-		<groupId>com.github.t1</groupId>
-		<artifactId>metrics-cdi</artifactId>
-		<version>${version}</version>
-	</dependency>
+    <dependency>
+        <groupId>com.github.t1</groupId>
+        <artifactId>metrics-cdi</artifactId>
+        <version>${version}</version>
+    </dependency>
 
 It's not on maven central, so you'll have to grab it from [bintray](https://bintray.com/t1/javaee-helpers/metrics-cdi/view).
 
@@ -31,6 +31,7 @@ It just uses Servlet 3.0 and CDI 1.0, so it should run on any Java EE 6 containe
 
 ## Things left to do
 
+* Interceptors for `@Timed`, `@Counted`, `@Metered`, and `@ExceptionMetered`
 * [JMX Gauges](https://dropwizard.github.io/metrics/3.1.0/manual/core/#jmx-gauges)
 * [Ratio Gauges](https://dropwizard.github.io/metrics/3.1.0/manual/core/#ratio-gauges)
 * [Cached Gauges](https://dropwizard.github.io/metrics/3.1.0/manual/core/#cached-gauges)
